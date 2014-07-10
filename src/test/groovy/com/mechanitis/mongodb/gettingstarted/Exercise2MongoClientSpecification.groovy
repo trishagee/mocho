@@ -1,9 +1,9 @@
 package com.mechanitis.mongodb.gettingstarted
 
+import com.mechanitis.mocho.Document
 import com.mechanitis.mocho.MongoClient
 import com.mechanitis.mocho.MongoCollection
 import com.mechanitis.mocho.MongoDatabase
-import spock.lang.Ignore
 import spock.lang.Specification
 
 public class Exercise2MongoClientSpecification extends Specification{
@@ -30,14 +30,13 @@ public class Exercise2MongoClientSpecification extends Specification{
         collection != null
     }
 
-    @Ignore("not implemented")
     def shouldNotBeAbleToUseMongoClientAfterItHasBeenClosed() throws UnknownHostException {
         given:
         MongoClient mongoClient = new MongoClient();
 
         when:
         mongoClient.close();
-        mongoClient.getDatabase("SomeDatabase").getCollection("coll").insert(["field": "value"]);
+        mongoClient.getDatabase("SomeDatabase").getCollection("coll").insert(["field": "value"] as Document);
         
         then:
         thrown IllegalStateException

@@ -15,6 +15,7 @@ dependencies {
     testCompile 'cglib:cglib-nodep:3.1'
     testCompile 'org.objenesis:objenesis:2.1'
     testCompile 'org.codehaus.groovy:groovy-all:2.3.4'
+    testCompile 'org.skyscreamer:jsonassert:1.2.3'
 }
 
 task wrapper(type: Wrapper) {

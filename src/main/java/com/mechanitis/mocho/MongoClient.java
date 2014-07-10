@@ -1,7 +1,5 @@
 package com.mechanitis.mocho;
 
-import com.mongodb.DB;
-
 import java.net.UnknownHostException;
 
 public class MongoClient {
@@ -10,15 +8,17 @@ public class MongoClient {
     public MongoClient() throws UnknownHostException {
         this.delegate = new com.mongodb.MongoClient();
     }
+    
+    public MongoClient(final MongoClientURI uri) throws UnknownHostException {
+        this.delegate = new com.mongodb.MongoClient(uri.getMongoURI());
+    }
 
     public MongoDatabase getDatabase(final String databaseName) {
-        DB db = delegate.getDB(databaseName);
-        
-        return new MongoDatabase(db);
+        return new MongoDatabase(delegate.getDB(databaseName));
     }
 
     public void close() {
-        throw new UnsupportedOperationException();
+        delegate.close();
     }
     //    MongoDatabase getDatabase(String databaseName);
 //

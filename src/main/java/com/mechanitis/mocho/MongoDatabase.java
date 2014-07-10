@@ -14,4 +14,8 @@ public class MongoDatabase {
         DBCollection collection = delegate.getCollection(collectionName);
         return new MongoCollection(collection);
     }
+
+    public void dropDatabase() {
+        delegate.dropDatabase();
+    }
 }
