@@ -1,17 +1,14 @@
 package com.mechanitis.mocho;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
 public class Document implements Map<String, Object> {
-    private BasicDBObject delegate;
+    private org.mongodb.Document delegate;
     
     public Document(final String key, final String value) {
-        delegate = new BasicDBObject(key, value);
+        delegate = new org.mongodb.Document(key, value);
     }
 
     public Document append(final String key, final Object value) {
@@ -20,7 +17,7 @@ public class Document implements Map<String, Object> {
     }
 
     public Document(final Map<String, Object> map) {
-        delegate = new BasicDBObject(map);
+        delegate = new org.mongodb.Document(map);
     }
 
     @Override
@@ -88,7 +85,7 @@ public class Document implements Map<String, Object> {
         return delegate.toString();
     }
 
-    DBObject getDBObject() {
+    public org.mongodb.Document getDocument() {
         return delegate;
     }
 }

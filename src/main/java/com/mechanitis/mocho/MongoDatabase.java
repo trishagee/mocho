@@ -1,21 +1,18 @@
 package com.mechanitis.mocho;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-
 public class MongoDatabase {
-    private final DB delegate;
+    private final org.mongodb.MongoDatabase delegate;
 
-    MongoDatabase(final DB database) {
+    MongoDatabase(final org.mongodb.MongoDatabase database) {
         this.delegate = database;
     }
 
     public MongoCollection getCollection(final String collectionName) {
-        DBCollection collection = delegate.getCollection(collectionName);
+        org.mongodb.MongoCollection collection = delegate.getCollection(collectionName);
         return new MongoCollection(collection);
     }
 
     public void dropDatabase() {
-        delegate.dropDatabase();
+        delegate.tools().drop();
     }
 }

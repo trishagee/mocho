@@ -1,15 +1,10 @@
 package com.mechanitis.mocho;
 
-import com.mongodb.DBCursor;
-
 public class MongoCursor {
-    private final DBCursor delegate;
+    private final org.mongodb.MongoCursor delegate;
 
-    MongoCursor(final DBCursor dbCursor) {
-        delegate = dbCursor;
+    MongoCursor(final org.mongodb.MongoCursor cursor) {
+        delegate = cursor;
     }
 
-    public int count() {
-        return delegate.count();
-    }
 }

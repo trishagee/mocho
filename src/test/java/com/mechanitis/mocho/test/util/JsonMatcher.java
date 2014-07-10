@@ -61,7 +61,7 @@ public class JsonMatcher extends TypeSafeMatcher<String> {
             Object itemAsPrettyJson = JSONParser.parseJSON(item);
             mismatchDescription.appendText("was ").appendValue(itemAsPrettyJson);
         } catch (final JSONException e) {
-            throw new RuntimeException(String.format("Error parsing expected JSON string %s. Got Exception %s",
+            throw new RuntimeException(String.format("Error parsing actual JSON string %s. Got Exception %s",
                                                      item, e.toString()));
         }
     }

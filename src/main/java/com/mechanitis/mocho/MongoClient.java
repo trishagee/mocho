@@ -1,20 +1,23 @@
 package com.mechanitis.mocho;
 
+import org.mongodb.MongoClients;
+import org.mongodb.connection.ServerAddress;
+
 import java.net.UnknownHostException;
 
-public class MongoClient {
-    private com.mongodb.MongoClient delegate;
+public class MongoClient implements AutoCloseable {
+    private org.mongodb.MongoClient delegate;
 
     public MongoClient() throws UnknownHostException {
-        this.delegate = new com.mongodb.MongoClient();
+        this.delegate = MongoClients.create(new ServerAddress());
     }
     
     public MongoClient(final MongoClientURI uri) throws UnknownHostException {
-        this.delegate = new com.mongodb.MongoClient(uri.getMongoURI());
+        this.delegate = MongoClients.create(uri.getMongoURI());
     }
 
     public MongoDatabase getDatabase(final String databaseName) {
-        return new MongoDatabase(delegate.getDB(databaseName));
+        return new MongoDatabase(delegate.getDatabase(databaseName));
     }
 
     public void close() {

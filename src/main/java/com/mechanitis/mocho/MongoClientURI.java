@@ -1,14 +1,13 @@
 package com.mechanitis.mocho;
 
-
 public class MongoClientURI {
-    private com.mongodb.MongoClientURI delegate;
+    private final org.mongodb.MongoClientURI delegate;
 
     public MongoClientURI(final String uri) {
-        delegate = new com.mongodb.MongoClientURI(uri);
+        delegate = new org.mongodb.MongoClientURI(uri);
     }
 
-    com.mongodb.MongoClientURI getMongoURI() {
+    org.mongodb.MongoClientURI getMongoURI() {
         return delegate;
     }
 }

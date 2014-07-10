@@ -10,7 +10,7 @@ public final class PersonAdaptor {
     public static final Document toDocument(Person person) {
         return new Document("_id", person.getId())
                .append("name", person.getName())
-               .append("address", toDocument(person.getAddress()))
+               .append("address", toDocument(person.getAddress()).getDocument())
                .append("books", person.getBookIds());
     }
 

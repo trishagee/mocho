@@ -1,21 +1,18 @@
 package com.mechanitis.mocho;
 
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-
 public class MongoCollection {
-    private final DBCollection delegate;
+    private final org.mongodb.MongoCollection<org.mongodb.Document> delegate;
 
-    MongoCollection(final DBCollection collection) {
+    MongoCollection(final org.mongodb.MongoCollection collection) {
         delegate = collection;
     }
 
     public void insert(final Document document) {
-        delegate.insert(document.getDBObject());
+        delegate.insert(document.getDocument());
     }
     
-    public MongoCursor find() {
-        DBCursor dbCursor = delegate.find();
-        return new MongoCursor(dbCursor);
+    public MongoView find() {
+        org.mongodb.MongoView<org.mongodb.Document> mongoView = delegate.find();
+        return new MongoView(mongoView);
     }
 }
