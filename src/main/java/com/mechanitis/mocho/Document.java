@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class Document implements Map<String, Object> {
-    private org.mongodb.Document delegate;
-    
+    private final org.mongodb.Document delegate;
+
     public Document(final String key, final String value) {
         delegate = new org.mongodb.Document(key, value);
     }
@@ -22,7 +22,7 @@ public class Document implements Map<String, Object> {
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        return delegate.size();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Document implements Map<String, Object> {
 
     @Override
     public Object get(final Object key) {
-        throw new UnsupportedOperationException("Not implemented yet!");
+        return delegate.get(key);
     }
 
     @Override
@@ -87,5 +87,10 @@ public class Document implements Map<String, Object> {
 
     public org.mongodb.Document getDocument() {
         return delegate;
+    }
+
+    public String getString(final String key) {
+        //TODO is there a more elegant way of doing this?
+        return (String) delegate.get(key);
     }
 }

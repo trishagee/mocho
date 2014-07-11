@@ -53,7 +53,7 @@ public class Exercise3InsertSpecification {
         collection.insert(PersonAdaptor.toDocument(charlie));
 
         //then:
-        assertThat(collection.find().count(), is(1L));
+        assertThat(collection.stream().count(), is(1L));
 
         //cleanup:
         database.dropDatabase();

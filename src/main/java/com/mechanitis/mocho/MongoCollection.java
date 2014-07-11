@@ -1,5 +1,7 @@
 package com.mechanitis.mocho;
 
+import java.util.stream.Stream;
+
 public class MongoCollection {
     private final org.mongodb.MongoCollection<org.mongodb.Document> delegate;
 
@@ -11,8 +13,7 @@ public class MongoCollection {
         delegate.insert(document.getDocument());
     }
     
-    public MongoView find() {
-        org.mongodb.MongoView<org.mongodb.Document> mongoView = delegate.find();
-        return new MongoView(mongoView);
+    public Stream<Document> stream() {
+        return new DocumentStream(delegate);
     }
 }

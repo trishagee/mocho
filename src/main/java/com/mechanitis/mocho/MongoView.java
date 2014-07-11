@@ -1,6 +1,6 @@
 package com.mechanitis.mocho;
 
-import org.mongodb.Document;
+import org.mongodb.MongoIterable;
 
 public class MongoView {
     private final org.mongodb.MongoView<Document> delegate;
@@ -11,5 +11,14 @@ public class MongoView {
 
     public long count() {
         return delegate.count();
+    }
+
+    public Document getOne() {
+        Document found = delegate.getOne();
+        return new Document(found);
+    }
+
+    public MongoIterable<Object> sort(final org.mongodb.Document id) {
+        throw new UnsupportedOperationException("Not implemented yet!");
     }
 }
